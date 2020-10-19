@@ -1,0 +1,7 @@
+<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+
+  <%= form_tag article_index_path, method: "GET" do %>
+  <%= label_tag(:search, "Enter article title" ) %>
+  <%= text_field_tag :search, params[:id] %>
+  <%= submit_tag("Search") %>
+<% end %>
