@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_053334) do
+ActiveRecord::Schema.define(version: 2020_10_20_072100) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2020_10_14_053334) do
     t.string "title"
   end
 
+  create_table "buildings", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "floor"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -95,6 +103,18 @@ ActiveRecord::Schema.define(version: 2020_10_14_053334) do
     t.integer "product_id", null: false
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string "Username"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.integer "order_id"
     t.integer "product_id"
@@ -130,6 +150,15 @@ ActiveRecord::Schema.define(version: 2020_10_14_053334) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body"
+    t.integer "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_reviews_on_article_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -159,4 +188,5 @@ ActiveRecord::Schema.define(version: 2020_10_14_053334) do
   add_foreign_key "clients_programmers", "clients"
   add_foreign_key "clients_programmers", "programmers"
   add_foreign_key "posts", "users"
+  add_foreign_key "reviews", "articles"
 end
