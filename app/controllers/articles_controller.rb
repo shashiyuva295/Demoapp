@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+
+  http_basic_authenticate_with name: "sha", password: "123", expect: [:index, :show]
+
   def index
     @articles = Article.all
   end
@@ -41,13 +44,18 @@ class ArticlesController < ApplicationController
  
     redirect_to articles_path
   end
-
+#adding search feature
   def search
-  	@articles = Article.search(params[:id])
+  	if params[:title]
+      @article = Article.where('title LIKE ?', "% #{params[:title]} %")
+    else 
+      @article = Article.all
+    end 
   end
  
   private
     def article_params
       params.require(:article).permit(:title, :text)
     end
+
 end

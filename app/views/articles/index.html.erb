@@ -25,11 +25,13 @@
 
 </table>
 
-<%#= form_tag("/search", method: "get") do %>
-  <%#= label_tag(:q, "Search for:") %>
-  <%#= text_field_tag(:q) %>
-  <%#= submit_tag("Search") %>
-<%# end %>
+
+<%# creating search %>
+
+<%= form_tag(articles_path method: :get) do %>
+  Title <%= text_field_tag :title, params[:title] %>
+  <%= submit_tag 'Search' %>
+<% end %>
 
  <%#= form.input :title %>
 <%# color_field("car", "color")

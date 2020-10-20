@@ -7,3 +7,8 @@
   <strong>Comment:</strong>
   <%= review.body %>
 </p>
+
+<p>
+  <%= link_to 'Destroy Comment', [review.article, review],
+               method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

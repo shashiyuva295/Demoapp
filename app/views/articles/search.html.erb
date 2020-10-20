@@ -1,7 +1,18 @@
-<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @article.text %>
+</p>
+ 
+<h2>Comments</h2>
+<%= render @article.reviews %>
+ 
+<h2>Add a comment:</h2>
+<%= render 'reviews/form' %>
 
-  <%= form_tag article_index_path, method: "GET" do %>
-  <%= label_tag(:search, "Enter article title" ) %>
-  <%= text_field_tag :search, params[:id] %>
-  <%= submit_tag("Search") %>
-<% end %>
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
