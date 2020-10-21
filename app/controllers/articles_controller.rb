@@ -45,14 +45,25 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 #adding search feature
-  def search
-  	if params[:title]
-      @article = Article.where('title LIKE ?', "% #{params[:title]} %")
+  
+   def search
+ 	  if params[:title]
+      @articles = Article.find('title LIKE ?', "%#{params[:title]}%")
     else 
-      @article = Article.all
+      @articles = Article.all
     end 
   end
  
+ # def search
+ #   if params[:title].blank?
+ #     redirect_to articles_path
+ #   else
+ #     @parameter = params[:title].downcase
+ #     @articles = Article.all.where("lower(title) LIKE :title", title: "%#{@parameter}%")
+ #   end
+ # end
+
+
   private
     def article_params
       params.require(:article).permit(:title, :text)
