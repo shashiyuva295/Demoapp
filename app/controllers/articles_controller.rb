@@ -1,9 +1,17 @@
 class ArticlesController < ApplicationController
 
-  http_basic_authenticate_with name: "sha", password: "123", expect: [:index, :show]
+  #http_basic_authenticate_with name: "sha", password: "123", expect: [:index, :show]
 
   def index
     @articles = Article.all
+    @search = params["search"]
+    if @search.present?
+      @title = @search["title"]
+      #@articles = Article.where(title: @title)
+      @articles = Article.where("title LIKE ?", "%#{@title}%")
+    #else
+      #@articles = Article.all
+    end
   end
  
   def show
@@ -44,25 +52,6 @@ class ArticlesController < ApplicationController
  
     redirect_to articles_path
   end
-#adding search feature
-  
-   def search
- 	  if params[:title]
-      @articles = Article.find('title LIKE ?', "%#{params[:title]}%")
-    else 
-      @articles = Article.all
-    end 
-  end
- 
- # def search
- #   if params[:title].blank?
- #     redirect_to articles_path
- #   else
- #     @parameter = params[:title].downcase
- #     @articles = Article.all.where("lower(title) LIKE :title", title: "%#{@parameter}%")
- #   end
- # end
-
 
   private
     def article_params
