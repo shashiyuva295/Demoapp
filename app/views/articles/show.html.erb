@@ -7,12 +7,26 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
- 
+ <p>
+	<strong>Image</strong>
+</p>
+
+<%#--- Displaying Uploaded images  ---%>
+	<% @article.images.each do |i| %>
+		<%= image_tag rails_blob_path(i) %>
+		
+    	<%#= image_tag @article.images_url %>
+    	 	<%#byebug%>
+
+ 	<% end %>
+
 <h2>Comments</h2>
 <%= render @article.reviews %>
  
 <h2>Add a comment:</h2>
+
+
 <%= render 'reviews/form' %>
  
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Edit', edit_article_path(@article) %>
 <%= link_to 'Back', articles_path %>

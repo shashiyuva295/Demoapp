@@ -15,15 +15,35 @@
   <% end %>
  
   <p>
-    <%= form.label :title %><br>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </p>
  
   <p>
-    <%= form.label :text %><br>
+    <%= form.label :text %>
     <%= form.text_area :text %>
   </p>
- 
+  <%#= For uploading image for article %>  
+    <%#= form.label :description %>
+    <%#= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :content %>
+    <%#= form.text_area :content %>
+  </div>
+
+  <div class="field">
+   <%# add an image....
+    <%= form.file_field :image %>
+  </div>
+
+ <%#= Multiple image using active storage %>
+ <div class="field">
+   <%= form.label :images %>
+   <%= form.file_field :images, multiple: true %>
+ </div>
+
   <p>
     <%= form.submit %>
   </p>

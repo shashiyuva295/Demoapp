@@ -9,13 +9,13 @@ class ArticlesController < ApplicationController
       @title = @search["title"]
       #@articles = Article.where(title: @title)
       @articles = Article.where("title LIKE ?", "%#{@title}%")
-    #else
-      #@articles = Article.all
+  
     end
   end
  
   def show
     @article = Article.find(params[:id])
+    
   end
  
   def new
@@ -24,6 +24,10 @@ class ArticlesController < ApplicationController
  
   def edit
     @article = Article.find(params[:id])
+    if params[:remove_image].present?
+      @remove_image
+    end
+
   end
  
   def create
@@ -55,7 +59,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :text)
+      params.require(:article).permit(:title, :text,:remove_image, images: []) #, :image, , :description, :content)
     end
 
 end

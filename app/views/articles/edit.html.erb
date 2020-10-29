@@ -25,7 +25,48 @@
     <%= form.label :text %><br>
     <%= form.text_area :text %>
   </p>
- 
+
+  <%# Attributes of image (Using Image Uploader) =%>
+
+   <div class="field">
+    <%#= form.label :description %>
+    <%#= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :content %>
+    <%#= form.text_area :content %>
+  </div>
+
+  <div class="field">
+   <%# add an image....
+    <%=# form.file_field :image %>
+  </div>
+
+<%#= for removing an image %>
+ <%# if @article.image? %>
+       <%#= image_tag @article.image.thumb.url %>
+   <%#   <div>
+          <%= label_tag :remove_image do %>
+         <%# Remove image
+          <%#= form.check_box :remove_image %>
+        <%# end %>
+     <%# </div>
+  <%# end %>
+
+<%#= Adding multiple images using Active Storage %>
+  <div class="field">
+   <%= form.label :images %>
+   <%= form.file_field :images, multiple: true %>
+ </div>
+
+    <% @article.images.each do |i| %>
+        <%= image_tag rails_blob_path(i) %>
+        <%#= label_tag :remove_image do %>
+        <%# Remove image %>
+        <%#= i.check_box :remove_image %>
+    <% end %>
+
   <p>
     <%= form.submit %>
   </p>
