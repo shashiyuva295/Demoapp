@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-http_basic_authenticate_with name: "sha", password: "123", only: :destroy
 	def create
 		@article = Article.find(params[:article_id])
 		@reviews = @article.reviews.create(comment_params)

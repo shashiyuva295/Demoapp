@@ -4,7 +4,9 @@ gem 'simple_form'
 ruby '2.7.0'
 gem 'haml'
 gem  'carrierwave'
-gem 'mini_magick' #for different versions of an image
+gem 'mini_magick'
+gem 'dropzonejs-rails'
+#for different versions of an image
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use sqlite3 as the database for Active Record
