@@ -1,14 +1,17 @@
 class Article < ApplicationRecord
-
-  has_many :reviews, dependent: :destroy
-  validates :title,:text, presence: true ,length: { minimum: 5 }
+  include ArticleConc
 
   #for uploading image:
   #  mount_uploader :image, ImageUploader
 
   #Active Storage
-  has_many_attached :images
+
+  # before_create do
+  #   self.name = name.capitalize
+  # end
+
 end
+
   #after_initialize do |article|
   # puts 'Object initialized'
   #end
@@ -48,10 +51,10 @@ end
    	#	end
    #end
 
-  def self.search(search)
-    if search
-      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-    else
-      find(:all)
-    end
-  end
+  # def self.search(search)
+  #   if search
+  #     find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+  #   else
+  #     find(:all)
+  #   end
+  # end
